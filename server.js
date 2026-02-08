@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const dist = path.join(__dirname, 'dist')
+const root = __dirname
 const port = process.env.PORT || 7798
 
 const app = express()
@@ -15,7 +16,7 @@ app.use(express.static(dist))
 
 // 접속 시 index.html로 바로 웹서비스 (SPA fallback)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(dist, 'index.html'))
+  res.sendFile(path.join(root, 'index.html'))
 })
 
 app.listen(port, () => {
