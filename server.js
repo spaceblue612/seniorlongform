@@ -14,6 +14,9 @@ const port = process.env.PORT || 7798
 const app = express()
 app.use(express.static(dist))
 
+// HTML 내 images/ 경로 → 프로젝트 루트의 images 폴더에서 제공
+app.use('/images', express.static(path.join(root, 'images')))
+
 // 접속 시 index.html로 바로 웹서비스 (SPA fallback)
 app.get('*', (req, res) => {
   res.sendFile(path.join(root, 'index.html'))
